@@ -54,16 +54,14 @@
             humanSelection = "rock";
             console.log("human: rock")
             humanSelectionText.textContent = "ROCK";
-            
-            //return humanSelection;
+                     
         });
 
         buttonPaper.addEventListener("click", ()=>{
             humanSelection = "paper";
             console.log("human: paper");
             humanSelectionText.textContent = "PAPER";
-            
-            //return humanSelection;
+
         });
 
         buttonScissors.addEventListener("click", ()=>{
@@ -71,18 +69,11 @@
             console.log("human: scissors");
             humanSelectionText.textContent = "SCISSORS";
             
-            //return humanSelection;
         });
 
         startButton.addEventListener("click", ()=>{
             playRound();
         });
-
-    
-        /*function getHumanChoice(){
-            
- 
-        }*/
     
         function getBotChoice(){
             
