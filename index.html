@@ -1,76 +1,168 @@
-<script>
-    console.log("Hello World");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="scoringArea">
+        <span>SELECT A HAND AND THEN PRESS PLAY</span>
+        <div class="playerScores">
+            <span>You:</span><span class="humanScoreText">0</span>
+            <span>Computer:</span><span class="botScoreText">0</span>
+        </div>
+        <button class="startButton">PLAY</button>
+        <span class="gameText">ROCK PAPER SCISSORS</span>
+    </div>
+    <div class="playArea">
+        <div class="humanArea">
+          <span class="humanSelectionText">AAAA</span>  
+            <div class="buttons">                
+                <button class="rockButton">ROCK</button>
+                <button class="paperButton">PAPER</button>
+                <button class="scissorsButton">SCISSORS</button>
+            </div>
+        </div>
 
-    let humanScore = 0;
-    let botScore = 0;
+        <div class="botArea">
+            <span class="botSelectionText">WAITING</span>
+        </div>
+    </div>
+    
+    <script>
+        console.log("Hello World");
+    
+        let humanScore = 0;
+        let botScore = 0;
+        let humanScoreText = document.querySelector(".humanScoreText");
+        let botScoreText = document.querySelector(".botScoreText");
+        let gameText = document.querySelector(".gameText");
+        let startButton = document.querySelector(".startButton");
 
-    function getHumanChoice(){
-        let humanInput = window.prompt();
-        let humanHand = humanInput.toLowerCase();
-        if(humanHand == "rock" || humanHand == "paper" || humanHand == "scissors"){
-            return humanHand;
-        }else{
-            console.log("invalid input");
-            return 0;
+
+        let buttonRock = document.querySelector(".rockButton");
+        let buttonPaper = document.querySelector(".paperButton");
+        let buttonScissors = document.querySelector(".scissorsButton");
+        let humanSelectionText = document.querySelector(".humanSelectionText");
+        let humanSelection = "";
+
+        humanSelectionText.textContent = "SELECT A HAND";
+
+        buttonRock.addEventListener("click", ()=>{
+            humanSelection = "rock";
+            console.log("human: rock")
+            humanSelectionText.textContent = "ROCK";
+            
+            //return humanSelection;
+        });
+
+        buttonPaper.addEventListener("click", ()=>{
+            humanSelection = "paper";
+            console.log("human: paper");
+            humanSelectionText.textContent = "PAPER";
+            
+            //return humanSelection;
+        });
+
+        buttonScissors.addEventListener("click", ()=>{
+            humanSelection = "scissors"
+            console.log("human: scissors");
+            humanSelectionText.textContent = "SCISSORS";
+            
+            //return humanSelection;
+        });
+
+        startButton.addEventListener("click", ()=>{
+            playRound();
+        });
+
+    
+        /*function getHumanChoice(){
+            
+ 
+        }*/
+    
+        function getBotChoice(){
+            
+            let botSelectionText = document.querySelector(".botSelectionText");
+            
+            let rpsHands = [
+                "rock",
+                "paper",
+                "scissors"
+            ]
+            let randIndex = Math.floor(Math.random() * rpsHands.length);
+            let botHand = rpsHands[randIndex];
+            console.log(botHand);
+            botSelectionText.textContent = `${botHand.toUpperCase()}`;
+            return botHand;
         }
-    }
-
-    function getBotChoice(){
-        let rpsHands = [
-            "rock",
-            "paper",
-            "scissors"
-        ]
-        let randIndex = Math.floor(Math.random() * rpsHands.length);
-        let botHand = rpsHands[randIndex];
-        return botHand;
-    }
-
-    function playRound(){
-        let humanSelection = getHumanChoice();
-        let botSelection = getBotChoice();
-
-        if(humanSelection === "rock"){
-            if (botSelection === "scissors"){
-                humanScore++
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "rock wins";
-            }else if(botSelection === "rock"){
-                return "it's a tie";
-            }else{
-                botScore++;
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "paper wins";
+    
+        function playRound(){
+            
+            let botSelection = getBotChoice();
+    
+            if(humanSelection === "rock"){
+                if (botSelection === "scissors"){
+                    humanScore++;
+                    humanScoreText.textContent = `${humanScore}`;
+                    gameText.textContent = "YOU WIN !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "rock wins";
+                }else if(botSelection === "rock"){
+                    gameText.textContent = "IT'S A TIE !";
+                    return "it's a tie";
+                }else{
+                    botScore++;
+                    botScoreText.textContent = `${botScore}`;
+                    gameText.textContent = "YOU LOSE !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "paper wins";
+                }
+            }
+    
+            if(humanSelection === "paper"){
+                if (botSelection === "rock"){
+                    humanScore++;
+                    humanScoreText.textContent = `${humanScore}`;
+                    gameText.textContent = "YOU WIN !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "paper wins";
+                }else if(botSelection === "paper"){
+                    gameText.textContent = "IT'S A TIE !";
+                    return "it's a tie";
+                }else{
+                    botScore++;
+                    botScoreText.textContent = `${botScore}`;
+                    gameText.textContent = "YOU LOSE !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "scissors win";
+                }
+            }
+    
+            if(humanSelection === "scissors"){
+                if (botSelection === "paper"){
+                    humanScore++;
+                    humanScoreText.textContent = `${humanScore}`;
+                    gameText.textContent = "YOU WIN !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "scissors win";
+                }else if(botSelection === "scissors"){
+                    gameText.textContent = "IT'S A TIE !";
+                    return "it's a tie";
+                }else{
+                    botScore++;
+                    botScoreText.textContent = `${botScore}`;
+                    gameText.textContent = "YOU LOSE !";
+                    console.log("human: " + humanScore + " - " + "bot: " + botScore);
+                    return "rock wins";
+                }
             }
         }
+    
+    </script>
+</body>
+</html>
 
-        if(humanSelection === "paper"){
-            if (botSelection === "rock"){
-                humanScore++
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "paper wins";
-            }else if(botSelection === "paper"){
-                return "it's a tie";
-            }else{
-                botScore++;
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "scissors win";
-            }
-        }
-
-        if(humanSelection === "scissors"){
-            if (botSelection === "paper"){
-                humanScore++
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "scissors win";
-            }else if(botSelection === "scissors"){
-                return "it's a tie";
-            }else{
-                botScore++;
-                console.log("human: " + humanScore + " - " + "bot: " + botScore);
-                return "rock wins";
-            }
-        }
-    }
-
-</script>

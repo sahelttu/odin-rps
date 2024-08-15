@@ -1,0 +1,67 @@
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.scoringArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25vh;
+    gap: 5px;
+}
+
+.playerScores{
+    display: flex;
+    flex: 1;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.playArea{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+.humanArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid blue;
+    border-radius: 3px;
+    height: 250px;
+    width: 250px;
+    gap: 30px;
+}
+
+.botArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid blue;
+    height: 250px;
+    width: 250px;
+    gap: 30px;
+}
+
+.humanSelectionText{
+    display: flex;
+    justify-content: center;
+}
+
+.botSelectionText{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5vh;
+}
